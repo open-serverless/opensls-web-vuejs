@@ -1,6 +1,7 @@
-import colors from 'vuetify/es5/util/colors'
-
-export default {
+const colorsObj = require('vuetify/es5/util/colors')
+const colors = colorsObj.default
+console.log(555454)
+module.exports = {
   /*
    ** Nuxt rendering mode
    ** See https://nuxtjs.org/api/configuration-mode
@@ -33,6 +34,9 @@ export default {
    ** Global CSS
    */
   css: [],
+  router: {
+    base: '/dev/'
+  },
   /*
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins

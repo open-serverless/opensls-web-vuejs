@@ -1,0 +1,55 @@
+service: opensls-web-vuejs
+
+provider:
+  name: aws
+  apiName: opensls-web-vuejs-${self:custom.stage}-api
+  stackName: opensls-web-vuejs-${self:custom.stage}-stack
+  runtime: nodejs10.x
+  stage: ${self:custom.stage}
+  region: ap-northeast-2
+  environment:
+    NODE_ENV: ${self:custom.stage}
+functions:
+  web:
+    name: opensls-web-vuejs-${self:custom.stage}-lambda
+    handler: server/handler.render
+    warmup: true
+    events:
+      - http: ANY /
+      - http: ANY /{proxy+}
+plugins:
+resources:
+  Resources:
+    # ${file(server/resources/lambda-warmup.yml)}
+package:
+  excludeDevDependencies: true
+  exclude: # 용량을 줄이기 위해서 static 폴더를 제외하고 불포함
+    # - .**
+    # - .**/*
+    # - pages/**
+    # - components/**
+    # - store/**
+    # - assets/**
+    # - layouts/**
+    # - plugins/**
+    # - test/**
+    # - middleware/**
+    # - README.md
+    # - package.json
+    # - package-lock.json
+    # - node_modules/**/*.md
+    # - node_modules/**/bin/**
+  include:
+    - server/**
+    - nuxt.config.js
+    - .nuxt/**
+    - node_modules/autoprefixer/**
+    - node_modules/babel-runtime/**
+    - node_modules/babel-extract-comments/**
+custom:
+  stage: ${opt:stage, 'dev'}
+  apigwBinary:
+    types:
+      - '*/*'
+  contentEncoding:
+    contentCompression: 1024
