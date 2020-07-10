@@ -1,6 +1,5 @@
 const colorsObj = require('vuetify/es5/util/colors')
 const colors = colorsObj.default
-console.log(555454)
 module.exports = {
   /*
    ** Nuxt rendering mode
@@ -28,20 +27,25 @@ module.exports = {
         content: process.env.npm_package_description || '',
       },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css' }
+    ],
   },
   /*
    ** Global CSS
    */
   css: [],
   router: {
-    base: '/dev/'
+    // base: '/dev/'
   },
   /*
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: [],
+  plugins: [
+    { src: '~/plugins/vue-responsive-video-background-player', ssr: false },
+  ],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
@@ -71,14 +75,22 @@ module.exports = {
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
+   ** //colors.blue.darken2,
    */
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
+    defaultAssets: {
+      font: {
+        family: 'NanumSquare' 
+      },
+      icons: 'mdi'
+    },
+    treeShake: true,
     theme: {
-      dark: true,
+      dark: false,
       themes: {
         dark: {
-          primary: colors.blue.darken2,
+          primary: colors.red.darken1,
           accent: colors.grey.darken3,
           secondary: colors.amber.darken3,
           info: colors.teal.lighten1,
