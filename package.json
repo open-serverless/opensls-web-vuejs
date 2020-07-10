@@ -18,7 +18,8 @@
     "aws-serverless-express": "^3.3.8",
     "cross-env": "^7.0.2",
     "express": "^4.17.1",
-    "nuxt-start": "^2.13.3"
+    "nuxt-start": "^2.13.3",
+    "vue-responsive-video-background-player": "^1.1.1"
   },
   "devDependencies": {
     "nuxt": "^2.13.0",
