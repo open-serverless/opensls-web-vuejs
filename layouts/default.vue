@@ -6,17 +6,16 @@
       dark
       flat
       >
-      <img src="/1logo_w.png" alt="" :style="{ height: '36px' }">
+      <img src="/dev/logo_w.png" alt="" :style="{ height: '36px' }">
       <v-spacer />
-      <v-btn rounded depressed color="primary">문의하기</v-btn>
+      <v-btn class="font-weight-black" rounded depressed color="primary" target="_blank" :href="devLink">개발 문의하기</v-btn>
     </v-app-bar>
-   
     <v-main>
       <nuxt />
     </v-main>
-    <!-- <v-footer app>
-      <span>&copy; {{ new Date().getFullYear() }}</span>
-    </v-footer> -->
+    <v-footer dark>
+      <span>&copy; 2018 Timecoach Inc</span>
+    </v-footer>
   </v-app>
 </template>
 
@@ -24,6 +23,7 @@
 export default {
   data () {
     return {
+      devLink: 'https://docs.google.com/forms/d/e/1FAIpQLSf2bjggCRVhqquaA8Czc3aqUuO_9Z3ai0V6X22tUTT4Az5_3g/viewform?usp=sf_link',
       title: 'TEAM OPEN SERVERLESS',
       scrollY: 0,
       screenHeight: 0
@@ -37,7 +37,6 @@ export default {
   },
   methods: {
     handleScroll (event) {
-      console.log('window.scrollY: ', window.scrollY)
       this.scrollY = window.scrollY
     }
   }

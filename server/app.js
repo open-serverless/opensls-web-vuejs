@@ -16,9 +16,7 @@ const buildPath = (originalPath) => {
 
 const envMiddleware = (req, res, next) => {
   const originalUrl = req.url
-  console.log('originalUrl: ', originalUrl)
   const envUrl = buildPath(originalUrl)
-  console.log('envUrl: ', envUrl)
   req.url = envUrl
   next()
 }

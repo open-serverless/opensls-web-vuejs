@@ -1,5 +1,6 @@
 const colorsObj = require('vuetify/es5/util/colors')
 const colors = colorsObj.default
+
 module.exports = {
   /*
    ** Nuxt rendering mode
@@ -37,13 +38,19 @@ module.exports = {
    */
   css: [],
   router: {
-    // base: '/dev/'
+    base: '/dev'
+  },
+  render: {
+    static: {
+      prefix: true
+    }
   },
   /*
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
   plugins: [
+    { src: '~/plugins/vue-line-clamp', ssr: false },
     { src: '~/plugins/vue-responsive-video-background-player', ssr: false },
   ],
   /*

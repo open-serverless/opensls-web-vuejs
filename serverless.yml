@@ -18,27 +18,80 @@ functions:
       - http: ANY /
       - http: ANY /{proxy+}
 plugins:
+  - serverless-apigw-binary
+  - serverless-plugin-warmup
+  - serverless-s3-sync
 resources:
   Resources:
-    # ${file(server/resources/lambda-warmup.yml)}
+    openslsWebVuejsWarmUpRole:
+      Type: AWS::IAM::Role
+      Properties:
+        RoleName: opensls-web-vuejs-${self:custom.stage}-warmup-role
+        AssumeRolePolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Principal:
+                Service:
+                  - lambda.amazonaws.com
+              Action: sts:AssumeRole
+        Policies:
+          - PolicyName: openslsWebVuejsWarmUpPolicy
+            PolicyDocument:
+              Version: '2012-10-17'
+              Statement:
+                - Effect: Allow
+                  Action:
+                    - logs:CreateLogGroup
+                    - logs:CreateLogStream
+                    - logs:PutLogEvents
+                  Resource:
+                    - 'Fn::Join':
+                      - ':'
+                      -
+                        - 'arn:aws:logs'
+                        - Ref: 'AWS::Region'
+                        - Ref: 'AWS::AccountId'
+                        - 'log-group:/aws/lambda/*:*:*'
+                - Effect: Allow
+                  Action:
+                    - ec2:CreateNetworkInterface
+                    - ec2:DescribeNetworkInterfaces
+                    - ec2:DetachNetworkInterface
+                    - ec2:DeleteNetworkInterface
+                  Resource: "*"
+                - Effect: 'Allow'
+                  Action:
+                    - 'lambda:InvokeFunction'
+                  Resource:
+                  - Fn::Join:
+                    - ':'
+                    - - arn:aws:lambda
+                      - Ref: AWS::Region
+                      - Ref: AWS::AccountId
+                      - function:opensls-web-vuejs-${self:custom.stage}-lambda
+    AssetsBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: opensls-web-vuejs
 package:
   excludeDevDependencies: true
   exclude: # 용량을 줄이기 위해서 static 폴더를 제외하고 불포함
-    # - .**
-    # - .**/*
-    # - pages/**
-    # - components/**
-    # - store/**
-    # - assets/**
-    # - layouts/**
-    # - plugins/**
-    # - test/**
-    # - middleware/**
-    # - README.md
-    # - package.json
-    # - package-lock.json
-    # - node_modules/**/*.md
-    # - node_modules/**/bin/**
+    - .**
+    - .**/*
+    - pages/**
+    - components/**
+    - store/**
+    - assets/**
+    - layouts/**
+    - plugins/**
+    - test/**
+    - middleware/**
+    - README.md
+    - package.json
+    - package-lock.json
+    - node_modules/**/*.md
+    - node_modules/**/bin/**
   include:
     - server/**
     - nuxt.config.js
@@ -53,3 +106,17 @@ custom:
       - '*/*'
   contentEncoding:
     contentCompression: 1024
+  warmup:
+    name: opensls-web-vuejs-${self:custom.stage}-warmup
+    memorySize: 256
+    role:  openslsWebVuejsWarmUpRole
+    schedule: "rate(10 minutes)"
+    prewarm: true
+  s3Sync:
+    - bucketName: opensls-web-vuejs # required
+      bucketPrefix: assets/ # optional
+      localDir: assets # required
+      params: # optional
+        - "*.png":
+            CacheControl: 'public, max-age=604800'
+      

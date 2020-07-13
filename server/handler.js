@@ -24,6 +24,9 @@ const binaryMimeTypes = [
 const server = awsServerlessExpress.createServer(app, null, binaryMimeTypes)
 
 module.exports.render = (event, context, callback) => {
-  console.log('111')
+  if (event.source === 'serverless-plugin-warmup') {
+    context.callbackWaitsForEmptyEventLoop = false
+    return callback(null, 'Lambda is warm!')
+  }
   awsServerlessExpress.proxy(server, event, context)
 }
