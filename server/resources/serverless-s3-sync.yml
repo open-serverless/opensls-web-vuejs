@@ -1,4 +1,0 @@
-AssetsBucket:
-  Type: AWS::S3::Bucket
-  Properties:
-    BucketName: opensls-web-vuejs

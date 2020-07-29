@@ -6,7 +6,9 @@
       dark
       flat
       >
-      <img src="/dev/logo_w.png" alt="" :style="{ height: '36px' }">
+      <nuxt-link to="/">
+        <img :src="`${s3AssetsBucket}/images/logo_w.png`" alt="" :style="{ height: '36px' }">
+      </nuxt-link>
       <v-spacer />
       <v-btn class="font-weight-black" rounded depressed color="primary" target="_blank" :href="devLink">개발 문의하기</v-btn>
     </v-app-bar>

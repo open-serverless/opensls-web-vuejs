@@ -2,8 +2,8 @@
   <div>
     <client-only>
       <video-background 
-        src="/dev/coding.mp4"
-        poster="/dev/coding.png"
+        :src="`${s3AssetsBucket}/videos/coding.mp4`"
+        :poster="`${s3AssetsBucket}/images/coding.png`"
         style="max-height: calc(100vh); height: calc(100vh);"
         overlay="linear-gradient(to top right, rgba(0,0,0,.9), rgba(25,32,72,.7))" 
       >
@@ -27,8 +27,6 @@
         </v-container>
       </video-background>
     </client-only>
-    <v-btn href="/hello">Redirect hello</v-btn>
-    <v-btn to="/hello">VueRouter hello</v-btn>
     <v-card class="py-16" flat rounded="0">
       <v-container class="text-center py-4">
         <div class="text-h4 text-md-h3 font-weight-black">어느 개발자의 일상</div>
@@ -173,14 +171,6 @@ export default {
   data: () => ({
     devLink: 'https://docs.google.com/forms/d/e/1FAIpQLSf2bjggCRVhqquaA8Czc3aqUuO_9Z3ai0V6X22tUTT4Az5_3g/viewform?usp=sf_link',
     chipGroup: 'news',
-    cases: [
-      { image: 'https://cdn.vuetifyjs.com/images/cards/docks.jpg', title: '배달의민족', description: '배달의민족은 스팸필더를 이용하여' },
-      { image: 'https://cdn.vuetifyjs.com/images/cards/docks.jpg', title: '배달의민족', description: '배달의민족은 스팸필더를 이용하여' },
-      { image: 'https://cdn.vuetifyjs.com/images/cards/docks.jpg', title: '배달의민족', description: '배달의민족은 스팸필더를 이용하여' },
-      { image: 'https://cdn.vuetifyjs.com/images/cards/docks.jpg', title: '배달의민족', description: '배달의민족은 스팸필더를 이용하여' },
-      { image: 'https://cdn.vuetifyjs.com/images/cards/docks.jpg', title: '배달의민족', description: '배달의민족은 스팸필더를 이용하여' },
-      { image: 'https://cdn.vuetifyjs.com/images/cards/docks.jpg', title: '배달의민족', description: '배달의민족은 스팸필더를 이용하여' },
-    ],
     news: [
       {
         image: 'https://wannabenews.com/wp-content/uploads/2020/06/serverless-architecture-780x405.jpeg',
@@ -255,18 +245,4 @@ export default {
 }
 </script>
 <style>
-#videoBg::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: linear-gradient(120deg, #000000, #222222, #5e5e5e);
-  opacity: .8;
-  z-index: 0;
-}
-.VideoBg__content {
-  z-index: 1;
-}
 </style>

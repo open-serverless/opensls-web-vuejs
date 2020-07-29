@@ -1,0 +1,5 @@
+Resources:
+  AssetsBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: opensls-web-vuejs-assets-${self:custom.stage}

@@ -4,6 +4,7 @@ const { nuxt } = require('./nuxt')
 
 const app = express()
 
+console.log('process.env.NODE_ENV: ', process.env.NODE_ENV)
 const BASE_URL = '/dev'
 const REGEXP_BASE_URL = new RegExp(`^${BASE_URL}`)
 const BASE_URL_TO_BE_ADDED = BASE_URL.replace(/\/$/, '')
@@ -16,13 +17,16 @@ const buildPath = (originalPath) => {
 
 const envMiddleware = (req, res, next) => {
   const originalUrl = req.url
+  console.log('originalUrl: ', originalUrl)
+  console.log('req: ', req)
   const envUrl = buildPath(originalUrl)
+  console.log('envUrl: ', envUrl)
   req.url = envUrl
   next()
 }
-
-app.use(envMiddleware)
-
+if (process.env.NODE_ENV !== 'prod') {
+  app.use(envMiddleware)
+}
 app.use(async (req, res, next) => {
   await nuxt.ready()
   nuxt.render(req, res, next)
