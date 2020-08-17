@@ -38,22 +38,21 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '오픈 서버리스는 서버리스, MSA 아키텍처 기반으로 웹서비스/모바일앱 개발이 필요한 스타트업 또는 기업을 위해 직접 개발, 컨설팅, 교육까지 다양한 방법으로 지원하고 있습니다.', },
-      { hid: 'keyword', name: 'keyword', content: '스타트업, 외주개발, 앱개발, 개발 의뢰, 앱 개발, 외주개발사, 외주, 개발자, 서버리스, 마이크로서비스, 오픈서버리스, Developer, Startup, 벤처, Outsourcing, Outsource, 아웃소싱, CTO, 불면증, 위워크, 앱개발, 어플개발, 어플리케이션 개발, 개발, 웹앱, 웹앱 개발, 리액트 네이티브, 개발자, 아이폰, 안드로이드, 반응형웹, 모바일, 모바일 개발, 벤처, 이성훈, 멋쟁이 사자처럼, 레일스, 파이썬, 루비, 스타트업 개발, 창업, 앱 창업, 앱 외주, 어플 외주, 애플리케이션 외주', },
+      { hid: 'description', name: 'description', content: '서버리스, MSA 아키텍처 기반 웹서비스/모바일앱 개발이 필요한 스타트업, 기업을 위해 개발, 컨설팅, 교육등 다양한 방법으로 지원해드립니다.', },
+      { hid: 'keyword', name: 'keyword', content: '오픈서버리스, 스타트업, 외주개발, 앱개발, 개발 의뢰, 앱 개발, 외주개발사, 외주, 개발자, 서버리스, 마이크로서비스, Startup, Outsourcing, 아웃소싱, CTO, 앱개발, 어플개발, 어플리케이션 개발, 웹앱, 리액트 네이티브, 개발자, 아이폰, 안드로이드, 반응형웹, 파이썬, 루비, 스타트업 개발, 앱 외주, 어플 외주, 애플리케이션 외주', },
       { hid: 'author', name: 'author', content: '오픈서버리스', },
       { hid: 'og:title', property: 'og:title', content: '오픈 서버리스 - 서버리스 기반 외주 개발팀' },
       { hid: 'og:image', property: 'og:image', content: `${nuxtEnv.DOMAIN}/ogtagimg.png` },
-      { hid: 'og:description', property: 'og:description', content: '오픈 서버리스는 서버리스, MSA 아키텍처 기반으로 웹서비스/모바일앱 개발이 필요한 스타트업 또는 기업을 위해 직접 개발, 컨설팅, 교육까지 다양한 방법으로 지원하고 있습니다.' },
+      { hid: 'og:description', property: 'og:description', content: '서버리스, MSA 아키텍처 기반 웹서비스/모바일앱 개발이 필요한 스타트업, 기업을 위해 개발, 컨설팅, 교육등 다양한 방법으로 지원해드립니다.' },
       { hid: 'og:url', property: 'og:url', content: nuxtEnv.DOMAIN },
       { hid: 'twitter:card', name: 'twitter:card', content: 'summary' },
       { hid: 'twitter:title', name: 'twitter:title', content: '오픈 서버리스 - 서버리스 기반 외주 개발팀' },
       { hid: 'twitter:url', name: 'twitter:url', content: nuxtEnv.DOMAIN },
       { hid: 'twitter:image', content: `${nuxtEnv.DOMAIN}/ogtagimg.png` },
-      { hid: 'twitter:description', name: 'twitter:description', content: '오픈 서버리스는 서버리스, MSA 아키텍처 기반으로 웹서비스/모바일앱 개발이 필요한 스타트업 또는 기업을 위해 직접 개발, 컨설팅, 교육까지 다양한 방법으로 지원하고 있습니다.' },
-      { hid: 'google-site-verification', name: 'google-site-verification', content: 'w3oGsofDTkjN1WIJRvISddGGFuCVm886XyHVyUm9ohw' },
-      { hid: 'naver-site-verification', name: 'naver-site-verification', content: '3383f014c17b6af774dc6c5bbe3db80109e654e9' },
+      { hid: 'twitter:description', name: 'twitter:description', content: '서버리스, MSA 아키텍처 기반 웹서비스/모바일앱 개발이 필요한 스타트업, 기업을 위해 개발, 컨설팅, 교육등 다양한 방법으로 지원해드립니다.' }
     ],
     link: [
+      { rel: 'canonical', href: nuxtEnv.DOMAIN },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css' }
     ],
